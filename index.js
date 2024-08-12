@@ -45,24 +45,4 @@ function getHtmlTemplate(templateName) {
   }
 }
 
-app.get("/api/newClientForm", async (req, res) => {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-  const filePath = join(__dirname, 'templates', `newProspect.html`);
-  const htmlContent = readFileSync(filePath, 'utf8');
-  const { data, error } = await resend.emails.send({
-    from: "suport@contact.psbposv.com",
-    to: ["henryagustin297@gmail.com"],
-    subject: "Welcome, we're happy you're here.",
-    html: htmlContent,
-  });
-
-  if (error) {
-    return res.status(400).json({ errorMessage: 'Failed to send email',error });
-  }
-
-  res.status(200).json({ message: 'Email sent successfully',data });
-  // res.status(200).json({ message: 'Email sent successfully' });
-});
-
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
