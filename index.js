@@ -17,9 +17,9 @@ app.post('/send-email', async (req, res) => {
   try {
       const htmlTemplate = getHtmlTemplate(templateName);
       const response = await resend.emails.send({
-          from: "suport@contact.psbposv.com",
+          from: "info@psbposv.com",
           to: [to],
-          bcc: [process.env.OWNER_MAIL],
+          bcc: [process.env.MAIL_OWNER],
           subject,
           html: htmlTemplate,
       });
